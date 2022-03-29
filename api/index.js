@@ -11,4 +11,5 @@ app.get('/teste', (req, res) => {
     });
 });
 
-app.listen(3006, () => console.log('servidor funcionando'));
+const port = 3006
+app.listen(port, () => console.log(`servidor funcionando na porta ${port}`));

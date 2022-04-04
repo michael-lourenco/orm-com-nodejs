@@ -67,6 +67,22 @@ class PessoaController{
             });
         }
     }
+
+    static async getMatricula(req, res){
+        try{
+            const matricula = await database.Matriculas.findOne({
+                where: {
+                    id: Number(req.params.matriculaId),
+                    estudante_id: Number(req.params.estudanteId)
+                }
+            });
+            return res.status(200).json(matricula);
+        } catch(error){
+            return res.status(500).json({
+                error: error.message
+            });
+        }
+    }
 }
 
 module.exports = PessoaController;

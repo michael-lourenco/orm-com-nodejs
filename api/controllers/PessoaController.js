@@ -96,6 +96,38 @@ class PessoaController{
             });
         }
     }
+
+    static async updateMatricula(req, res){
+        try{
+            const matricula = await database.Matriculas.update(req.body, {
+                where: {
+                    id: Number(req.params.matriculaId),
+                    estudante_id: Number(req.params.estudanteId)
+                }
+            });
+            return res.status(200).json(matricula);
+        } catch(error){
+            return res.status(500).json({
+                error: error.message
+            });
+        }
+    }
+
+    static async deleteMatricula(req, res){
+        try{
+            const matricula = await database.Matriculas.destroy({
+                where: {
+                    id: req.params.matriculaId
+                }
+            });
+            return res.status(200).json(matricula);
+        } catch(error){
+            return res.status(500).json({
+                error: error.message
+            });
+        }
+    }
+
 }
 
 module.exports = PessoaController;
